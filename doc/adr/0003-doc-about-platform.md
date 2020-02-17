@@ -19,10 +19,18 @@ Ok, at first, it came to my mind the idea of Platform as a Service.  I have
 - Kubernetes
 - Openshift
 
+Also I think it could be possible to consider other solutions, like:
+
+- AWS ECS
+- AWS EKS 
+- Google GKS
+- Azure AKS
+
+
 All of them are good options for managing microservices architectures,
  but it depends on the perspective.  As SRE, I want to keep things under
  control, so I'm going to use something I can create from scratch.  So
- I will discard Heroku now.
+ I will discard Heroku now and all the managed solutions (*KS and AWS ECS).
 
 Cloud Foundry is really a good idea from the developer point of view, as
  the only thing she has to do is just focus on development.  Cloud Foundry
@@ -50,6 +58,36 @@ Pros: It must be very complete
 Cons: I don't have any experience at all with openshift.
 
 
+### Let's talk about costs
+
+I would like to add here an interesting topic: Costs.
+
+To design a System Architecture, you must cover the following set of features:
+
+- Availability
+- Economy
+
+Availability
+
+Availability for me includes these topics:
+
+- Maintenability
+- Testability
+- Usability
+- Scalability
+- Performance
+- Security
+
+Economy
+
+Because at the end, a business must earn money with the value added to the market.
+
+So there is a complex formula to balance Availability and Economy.
+
+Public cloud is cheaper at the beginning, but it becomes expensive quickly.
+
+Private cloud is expensive at the short and middle scope, but it can be cheaper when the business is mature.
+
 ## Decision
 
 Here is a good branch point.
@@ -62,6 +100,8 @@ But Kubernetes is more appropiate to answer this test, as it will allows me to
 
 Openshift... It would be nice to try it.
 
+And about economy, it's not so easy to decide between public or private.  I'm 
+ going to use my own servers, and my AWS account.
 
 So, I will create a main branch for a solution based on Kubernetes, and I will try
  to keep an eye on Openshift if I have enough time.
@@ -72,3 +112,5 @@ Kubernetes is going to be the platform for managing the microservices architectu
 
 I will create my own cluster of kubernetes on three VM using proxmox, kubeadm and
  kubectl.
+
+I will use my AWS account to test the scalability of the system.
