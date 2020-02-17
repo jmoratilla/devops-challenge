@@ -26,5 +26,5 @@ This repo is a kind of handmade monorepo, that means all microservices are under
 * [ASDF-VM](https://asdf-vm.com): to install all the packages (like in rbenv)
 * [ADR tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md): to help with the documentation of the decisions assumed in the project.
 * [SDKMAN](https://sdkman.io/): to help with the download of some of the packages.
-* [ConventiaonalCommits Guidelines](https://www.conventionalcommits.org/en/v1.0.0/): to ease the CHANGELOG and versioning of the code.
+* [ConventionalCommits Guidelines](https://www.conventionalcommits.org/en/v1.0.0/): to ease the CHANGELOG and versioning of the code.
 
