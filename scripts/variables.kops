@@ -1,0 +1,20 @@
+# AWS vars
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+
+# Kops vars
+export NAME=k8s.jmlab.es
+export KOPS_KUBERNETES_VERSION="v1.15.9"
+export KOPS_STATE_STORE=s3://$NAME-state-store
+export KOPS_NODE_SIZE=${KOPS_NODE_SIZE:-t3a.medium}
+export KOPS_MASTER_SIZE=${KOPS_MASTER_SIZE:-t3a.large}
+export KOPS_NODE_ZONES=${KOPS_NODE_ZONES:-"eu-west-1a,eu-west-1b,eu-west-1c"}
+export KOPS_MASTER_ZONES=${KOPS_MASTER_ZONES:-"eu-west-1a"}
+export KOPS_MASTER_COUNT=1
+export KOPS_NODE_COUNT=2
+# export KOPS_NETWORKING="kubenet" # Not suported for private
+export KOPS_NETWORKING="calico"
+export KOPS_SSH_KEY_PATH=~/.ssh/2020-02-18-kops.pub
+export KOPS_NETWORK_CIDR="10.1.0.0/16"
+export KOPS_TOPOLOGY="private"
+
