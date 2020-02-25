@@ -34,11 +34,11 @@ jobs:
             chmod u+x ./kubectl
       - run:
           name: Deploy Code
-          command: echo "Here is where magic happens"
+          command: sh scripts/deploy2k8s.sh
 
 workflows:
   version: 2
-  build-master:
+  build:
     jobs:
       - build:
           context: Credentials
