@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    
+    working_directory: ~/repo
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      - restore_cache:
+        keys:
+          - v1_dependencies-{{ checksum "pom.xml" }}
+          - v1_dependencies-
+        
+      - run:
+        name: Build the projects
+        command: scripts/build.sh
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-v1_dependencies-{{ checksum "pom.xml" }}
+
+      - run: 
+        name: Push to Docker Hub Registry
+        command: scripts/deploy.sh
+
