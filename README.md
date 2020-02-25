@@ -8,7 +8,7 @@ This repo contains all the work and docs for the code test.
 First, download the repository using git:
 
 ```shell
-$ git clone https://jmoratilla@bitbucket.org/jmoratilla/clarity-challenge.git
+$ git clone https://bitbucket.org/moratilla/cl-challenge.git
 ```
 
 ## About documentation
@@ -42,13 +42,8 @@ Or use the template to provision your cluster:
       --name $NAME \
       sshpublickey admin \
       -i $KOPS_SSH_KEY_PATH
-    $ kops replace --config cluster.yaml
+    $ kops replace --config cluster.yaml --force
     $ kops update cluster k8s.jmlab.es
-    kops create secret \
-      --name $NAME \
-      sshpublickey admin \
-      -i $KOPS_SSH_KEY_PATH
-
 
 ## Tools used
 
