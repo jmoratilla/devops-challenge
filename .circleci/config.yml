@@ -3,29 +3,42 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk
-    
     working_directory: ~/repo
     environment:
       MAVEN_OPTS: -Xmx3200m
-
     steps:
       - checkout
-
+      - setup_remote_docker
       - restore_cache:
-        keys:
-          - v1_dependencies-{{ checksum "pom.xml" }}
-          - v1_dependencies-
-        
+          keys:
+            - v1_dependencies-{{ checksum "pom.xml" }}
+            - v1_dependencies-
       - run:
-        name: Build the projects
-        command: scripts/build.sh
-
+          name: Build the projects
+          command: sh scripts/build.sh
       - save_cache:
           paths:
             - ~/.m2
           key: v1-v1_dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Login to Docker Hub
+          command: |
+            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+      - run:
+          name: Push to Docker Hub Registry
+          command: sh scripts/deploy.sh
+      - run:
+          name: Install kubectl
+          command: |
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+            chmod u+x ./kubectl
+      - run:
+          name: Deploy Code
+          command: echo "Here is where magic happens"
 
-      - run: 
-        name: Push to Docker Hub Registry
-        command: scripts/deploy.sh
-
+workflows:
+  version: 2
+  build-master:
+    jobs:
+      - build:
+          context: Credentials
