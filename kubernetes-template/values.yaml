@@ -1,10 +1,14 @@
 kops:
-  clusterName: k8s.jmlab.es
+  clrName: k8s.jmlab.es
   stateStore: k8s.jmlab.es-state-store
+  networkCIDR: 10.1.0.0/16
   masterZones:
   - eu-west-1a
-  networkCIDR: 10.1.0.0/16
   masterSize: t3a.large
   masterCount: 1
+  nodeZones:
+  - eu-west-1a
+  - eu-west-1b
+  - eu-west-1c
   nodeSize: t3a.medium
   nodeCount: 3

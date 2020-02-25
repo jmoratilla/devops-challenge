@@ -1,84 +1,88 @@
-apiVersion: kops/v1alpha2
+apiVersion: kops.k8s.io/v1alpha2
 kind: Cluster
 metadata:
-  name: {{.kops.clusterNname}}
+  name: {{.kops.clrName}}
 spec:
   api:
     loadBalancer:
       type: Public
-    authorization:
-      rbac: {}
-    channel: stable
-    cloudProvider: aws
-    configBase: s3://{{.kops.stateStore}}
-    etcdClusters:
-    - etcdMembers:
-    {{range $i, $a := .kops.masterZones}}
-      - instanceGroup: master-{{.}}
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://{{.kops.stateStore}}
+  etcdClusters:
+  - etcdMembers:
+  {{range $i, $a := .kops.masterZones}}
+    - instanceGroup: master-{{.}}
       name: {{.}}
-    {{end}}
+  {{end}}
     name: main
-    - etcdMembers:
-    {{range $i, $a := .kops.masterZones}}
-      - instanceGroup: master-{{.}}
+    version: 3.2.24
+  - etcdMembers:
+  {{range $i, $a := .kops.masterZones}}
+    - instanceGroup: master-{{.}}
       name: {{.}}
-    {{end}}
+  {{end}}
     name: events
-    iam:
-      allowContainerRegistry: true
-      legacy: false
-    kubernetesVersion: v1.15.9
-    masterPublicName: api.{{.kops.clusterName}}
-    networkCIDR: {{.kops.networkCIDR}}
-    networking:
-      calico:
-        majorVersion: v3
-    nonMasqueradeCIDR: 100.64.0.0/10
-    subnets:
-    - cidr: 10.1.32.0/19
-      name: eu-west-1a
-      type: Private
-      zone: eu-west-1a
-    - cidr: 10.1.64.0/19
-      name: eu-west-1b
-      type: Private
-      zone: eu-west-1b
-    - cidr: 10.1.96.0/19
-      name: eu-west-1c
-      type: Private
-      zone: eu-west-1c
-    - cidr: 10.1.0.0/22
-      name: utility-eu-west-1a
-      type: Utility
-      zone: eu-west-1a
-    - cidr: 10.1.4.0/22
-      name: utility-eu-west-1b
-      type: Utility
-      zone: eu-west-1b
-    - cidr: 10.1.8.0/22
-      name: utility-eu-west-1c
-      type: Utility
-      zone: eu-west-1c
-    topology:
-      bastion:
-        bastionPublicName: bastion.{{.kops.clusterName}}
-      dns:
-        type: Public
-      masters: private
-      nodes: private
+    version: 3.2.24
+  kubelet:
+    anonymousAuth: false
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubernetesVersion: v1.15.9
+  masterPublicName: api.{{.kops.clrName}}
+  networkCIDR: {{.kops.networkCIDR}}
+  networking:
+    calico:
+      majorVersion: v3
+  nonMasqueradeCIDR: 100.64.0.0/10
+  subnets:
+  - cidr: 10.1.32.0/19
+    name: eu-west-1a
+    type: Private
+    zone: eu-west-1a
+  - cidr: 10.1.64.0/19
+    name: eu-west-1b
+    type: Private
+    zone: eu-west-1b
+  - cidr: 10.1.96.0/19
+    name: eu-west-1c
+    type: Private
+    zone: eu-west-1c
+  - cidr: 10.1.0.0/22
+    name: utility-eu-west-1a
+    type: Utility
+    zone: eu-west-1a
+  - cidr: 10.1.4.0/22
+    name: utility-eu-west-1b
+    type: Utility
+    zone: eu-west-1b
+  - cidr: 10.1.8.0/22
+    name: utility-eu-west-1c
+    type: Utility
+    zone: eu-west-1c
+  topology:
+    bastion:
+      bastionPublicName: bastion.{{.kops.clrName}}
+    dns:
+      type: Public
+    masters: private
+    nodes: private
 ---
 
 {{range .kops.masterZones}}
-apiVersion: kops/alphav2
-kind: instanceGroup
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
 metadata:
   labels:
-    kops.k8s.io/cluster: {{.kops.clusterName}}
+    kops.k8s.io/cluster: {{$.kops.clrName}}
   name: master-{{.}}
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
-  machineType: {{.kops.masterSize}}
-  maxSize: {{.kops.masterCount}}
+  machineType: {{$.kops.masterSize}}
+  maxSize: {{$.kops.masterCount}}
   minSize: 1
   role: Master
   subnets:
@@ -86,11 +90,11 @@ spec:
 ---
 {{end}}
 
-apiVersoin: kops/v1alpha2
-kind: instanceGroup
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
 metadata:
   labels:
-    kops.k8s.io/cluster: {{.kops.clusterName}}
+    kops.k8s.io/cluster: {{.kops.clrName}}
   name: bastions
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
@@ -104,11 +108,11 @@ spec:
   - utility-eu-west-1c
 ---
 
-apiVersion: kops/v1alpha2
-kind: instanceGroup
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
 metadata:
   labels:
-    kops.k8s.io/cluster: {{.kops.clusterName}}
+    kops.k8s.io/cluster: {{.kops.clrName}}
   name: nodes
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
