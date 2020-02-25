@@ -20,6 +20,34 @@ The documentation is under the doc/ subdirectory and in form of ADRs (Architectu
 
 This repo is a kind of handmade monorepo, that means all microservices are under the same repository.
 
+## Deploy the cluster
+
+Change the env vars needed (they are in the scripts/variables.kops file)
+
+    $ source scripts/variables.kops
+
+Use the script procedure to provision your cluster:
+
+    $ cd scripts
+    $ ./kops_create.sh
+
+Or use the template to provision your cluster:
+
+    $ cd kubernetes-template
+    $ kops toolbox template \
+      --values values.yaml \
+      --template cluster-template.yaml \
+      --output cluster.yamlkops create secret \
+  --name $NAME \
+  sshpublickey admin \
+  -i $KOPS_SSH_KEY_PATH
+    $ kops replace --config cluster.yaml
+    $ kops update cluster k8s.jmlab.es
+    kops create secret \
+      --name $NAME \
+      sshpublickey admin \
+      -i $KOPS_SSH_KEY_PATH
+
 
 ## Tools used
 
