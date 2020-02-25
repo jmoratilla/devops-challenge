@@ -2,6 +2,10 @@
 
 This repo contains all the work and docs for the code test.
 
+## Status Badges
+
+[![CircleCI](https://circleci.com/bb/moratilla/cl-challenge.svg?style=svg&circle-token=ae29e48d6587f59393ae60bc5b0b906d8368d253)](https://circleci.com/bb/moratilla/cl-challenge)
+https://circleci.com/bb/moratilla/cl-challenge/edit#badges
 
 ## The way to use and run it
 
