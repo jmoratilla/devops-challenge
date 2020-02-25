@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicio-eureka-server-deployment
+  namespace: default
+  labels:
+    app: servicio-eureka-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicio-eureka-server
+  template:
+    metadata:
+      labels:
+        app: servicio-eureka-server
+    spec:
+      containers:
+        - name: servicio-eureka-server
+          image: jmoratilla/servicio-eureka-server:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8761
+              name: servicio-eureka-server-ports
+
