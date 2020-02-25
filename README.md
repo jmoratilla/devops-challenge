@@ -37,10 +37,11 @@ Or use the template to provision your cluster:
     $ kops toolbox template \
       --values values.yaml \
       --template cluster-template.yaml \
-      --output cluster.yamlkops create secret \
-  --name $NAME \
-  sshpublickey admin \
-  -i $KOPS_SSH_KEY_PATH
+      --output cluster.yaml
+    $ kops create secret \
+      --name $NAME \
+      sshpublickey admin \
+      -i $KOPS_SSH_KEY_PATH
     $ kops replace --config cluster.yaml
     $ kops update cluster k8s.jmlab.es
     kops create secret \
