@@ -1,6 +1,5 @@
-FROM openjdk:11-jdk-alpine
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ARG JAR_FILE
-ADD target/lib /user/share/myservice/lib
 ADD target/${JAR_FILE} /user/share/myservice/myservice.jar
 ENTRYPOINT ["/usr/bin/java","-Djava.security.egd=file:/dev/./urandom","-jar","/user/share/myservice/myservice.jar"]
