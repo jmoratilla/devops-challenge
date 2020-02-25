@@ -26,11 +26,13 @@ spec:
   {{end}}
     name: events
     version: 3.2.24
-  kubelet:
-    anonymousAuth: false
   iam:
     allowContainerRegistry: true
     legacy: false
+  kubelet:
+    anonymousAuth: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
   kubernetesVersion: v1.15.9
   masterPublicName: api.{{.kops.clrName}}
   networkCIDR: {{.kops.networkCIDR}}
@@ -38,6 +40,8 @@ spec:
     calico:
       majorVersion: v3
   nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
   subnets:
   - cidr: 10.1.32.0/19
     name: eu-west-1a
