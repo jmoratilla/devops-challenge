@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicio-zuul-server-deployment
+  labels:
+    app: servicio-zuul-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicio-zuul-server
+  template:
+    metadata:
+      labels:
+        app: servicio-zuul-server
+    spec:
+      containers:
+        - name: servicio-zuul-server
+          image: jmoratilla/servicio-zuul-server:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8090
+

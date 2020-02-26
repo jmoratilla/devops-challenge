@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicio-productos-deployment
+  labels:
+    app: servicio-productos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicio-productos
+  template:
+    metadata:
+      labels:
+        app: servicio-productos
+    spec:
+      containers:
+        - name: servicio-productos
+          image: jmoratilla/servicio-productos:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 0
+

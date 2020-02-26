@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicio-config-server-deployment
+  labels:
+    app: servicio-config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicio-config-server
+  template:
+    metadata:
+      labels:
+        app: servicio-config-server
+    spec:
+      containers:
+        - name: servicio-config-server
+          image: jmoratilla/servicio-config-server:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8888
+
