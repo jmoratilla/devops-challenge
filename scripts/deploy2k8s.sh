@@ -10,7 +10,7 @@ for i in *
 do
     echo "Working in $i..."
     cd $i
-    ./kubectl --kubeconfig=~/kubeconfig.yml apply -f ./kube
+    ~/kubectl --kubeconfig=~/kubeconfig.yml apply -f ./kube
     echo "Done in $i."
     cd ..
 done
