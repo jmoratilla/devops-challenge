@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: servicio-zuul-server-deployment
-  namespace: default
   labels:
     app: servicio-zuul-server
 spec:
