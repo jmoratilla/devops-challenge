@@ -11,40 +11,22 @@ jobs:
       - setup_remote_docker
       - restore_cache:
           keys:
-            - config-server_dependencies-{{ checksum "code/springboot-servicio-config-server/pom.xml" }}
-            - config-server_dependencies-
-            - eureka-server_dependencies-{{ checksum "code/springboot-servicio-eureka-server/pom.xml" }}
-            - eureka-server_dependencies-
-            - items-server_dependencies-{{ checksum "code/springboot-servicio-item/pom.xml" }}
-            - items-server_dependencies-
-            - productos-server_dependencies-{{ checksum "code/springboot-servicio-productos/pom.xml" }}
-            - productos-server_dependencies-
-            - zuul-server_dependencies-{{ checksum "code/springboot-servicio-zuul-server/pom.xml" }}
-            - zuul-server_dependencies-
+            - v1_dependencies-{{ checksum "pom.xml" }}
+            - v1_dependencies-
       - run:
           name: Build the projects
-          command: sh -e scripts/build.sh
+          command: sh scripts/build.sh
       - save_cache:
           paths:
             - ~/.m2
-          keys:
-            - config-server_dependencies-{{ checksum "code/springboot-servicio-config-server/pom.xml" }}
-            - config-server_dependencies-
-            - eureka-server_dependencies-{{ checksum "code/springboot-servicio-eureka-server/pom.xml" }}
-            - eureka-server_dependencies-
-            - items-server_dependencies-{{ checksum "code/springboot-servicio-item/pom.xml" }}
-            - items-server_dependencies-
-            - productos-server_dependencies-{{ checksum "code/springboot-servicio-productos/pom.xml" }}
-            - productos-server_dependencies-
-            - zuul-server_dependencies-{{ checksum "code/springboot-servicio-zuul-server/pom.xml" }}
-            - zuul-server_dependencies-
+          key: v1-v1_dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Login to Docker Hub
           command: |
             docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
       - run:
           name: Push to Docker Hub Registry
-          command: sh -e scripts/deploy.sh
+          command: sh scripts/deploy.sh
       - run:
           name: Install kubectl
           command: |
@@ -53,7 +35,7 @@ jobs:
             chmod u+x ~/kubectl
       - run:
           name: Deploy Code
-          command: sh -e scripts/deploy2k8s.sh
+          command: sh scripts/deploy2k8s.sh
 
 workflows:
   version: 2
