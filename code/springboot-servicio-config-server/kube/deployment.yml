@@ -19,5 +19,4 @@ spec:
           image: jmoratilla/servicio-config-server:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8888
-              name: servicio-config-server-ports
 

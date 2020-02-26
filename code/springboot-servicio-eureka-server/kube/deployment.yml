@@ -19,5 +19,4 @@ spec:
           image: jmoratilla/servicio-eureka-server:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8761
-              name: servicio-eureka-server-ports
 

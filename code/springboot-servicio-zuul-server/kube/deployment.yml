@@ -19,5 +19,4 @@ spec:
           image: jmoratilla/servicio-zuul-server:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8090
-              name: servicio-zuul-server-ports
 

@@ -19,5 +19,4 @@ spec:
           image: jmoratilla/servicio-item:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8002
-              name: servicio-item-ports
 
