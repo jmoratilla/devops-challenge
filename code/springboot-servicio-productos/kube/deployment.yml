@@ -18,5 +18,5 @@ spec:
         - name: servicio-productos
           image: jmoratilla/servicio-productos:0.0.1-SNAPSHOT
           ports:
-            - containerPort: 0
+            - containerPort: 8001
 
