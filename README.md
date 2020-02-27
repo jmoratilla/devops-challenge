@@ -47,8 +47,7 @@ Or use the template to provision your cluster:
       sshpublickey admin \
       -i $KOPS_SSH_KEY_PATH
     $ kops replace -f cluster.yaml --force
-    $ kops update cluster k8s.jmlab.es
-
+    $ kops update cluster $NAME --yes
 ## Tools used
 
 * [ASDF-VM](https://asdf-vm.com): to install all the packages (like in rbenv)
