@@ -24,6 +24,12 @@ The documentation is under the doc/ subdirectory and in form of ADRs (Architectu
 
 This repo is a kind of handmade monorepo, that means all microservices are under the same repository.
 
+Is an API interface to expose a CRUD for Items and Products.
+
+![diagram of the microservices example](/doc/assets/microservices_diag01.png)
+
+
+
 ## Deploy the cluster
 
 Change the env vars needed (they are in the scripts/variables.kops file)
@@ -48,6 +54,7 @@ Or use the template to provision your cluster:
       -i $KOPS_SSH_KEY_PATH
     $ kops replace -f cluster.yaml --force
     $ kops update cluster $NAME --yes
+
 ## Tools used
 
 * [ASDF-VM](https://asdf-vm.com): to install all the packages (like in rbenv)
