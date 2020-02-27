@@ -46,7 +46,7 @@ Or use the template to provision your cluster:
       --name $NAME \
       sshpublickey admin \
       -i $KOPS_SSH_KEY_PATH
-    $ kops replace --config cluster.yaml --force
+    $ kops replace -f cluster.yaml --force
     $ kops update cluster k8s.jmlab.es
 
 ## Tools used
