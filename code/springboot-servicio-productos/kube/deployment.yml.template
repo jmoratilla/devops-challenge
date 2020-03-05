@@ -1,7 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicio-productos
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8001
+      targetPort: 8001
+  selector:
+    app: servicio-productos
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: servicio-productos-deployment
+  name: servicio-productos
   labels:
     app: servicio-productos
 spec:
@@ -16,7 +28,8 @@ spec:
     spec:
       containers:
         - name: servicio-productos
-          image: jmoratilla/servicio-productos:0.0.1-SNAPSHOT
+          image: jmoratilla/servicio-productos:${BUILD_NUM}
+          imagePullPolicy: Always
           ports:
             - containerPort: 8001
 
