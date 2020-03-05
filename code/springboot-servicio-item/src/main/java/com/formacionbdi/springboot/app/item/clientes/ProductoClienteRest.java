@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.formacionbdi.springboot.app.item.models.Producto;
 
-@FeignClient(name = "servicio-productos")
+@FeignClient(name = "servicio-productos",url = "http://servicio-productos:8001")
 public interface ProductoClienteRest {
 	
 	@GetMapping("/listar")
