@@ -10,6 +10,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: Install envsubst
+          command: |
+            apt-get update  && apt-get -y install gettext-base
+      - run:
           name: Build the projects
           command: sh -e scripts/build.sh
       - run:
