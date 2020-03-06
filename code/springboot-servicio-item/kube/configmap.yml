@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: servicio-item
+data:
+  application.yml: |-
+    spring:
+      profiles: development
+      application:
+        name: servicio-item
+    configuracion:
+      texto: Configurando entorno de desarrollo
+      autor:
+        nombre: Jorge Moratilla
+        mail: jorge at moratilla dot com
+    ---
+    spring:
+      profiles: kubernetes
+    configuracion:
+      texto: Configurando entorno en kubernetes

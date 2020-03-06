@@ -34,4 +34,18 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8002
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: development
+          volumeMounts:
+            - name: servicio-item
+              mountPath: /user/share/myservice/config
+              readOnly: true
+      volumes:
+        - name: servicio-item
+          configMap:
+            name: servicio-item
+            items:
+              - key: application.yml
+                path: application.yml
 

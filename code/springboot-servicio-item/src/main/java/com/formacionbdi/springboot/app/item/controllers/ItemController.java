@@ -80,7 +80,7 @@ public class ItemController {
 		json.put("texto", texto);
 		json.put("puerto", puerto);
 		
-		if(env.getActiveProfiles().length>0 && env.getActiveProfiles()[0].equals("dev")) {
+		if(env.getActiveProfiles().length>0 && env.getActiveProfiles()[0].equals("development")) {
 			json.put("autor.nombre", env.getProperty("configuracion.autor.nombre"));
 			json.put("autor.email", env.getProperty("configuracion.autor.email"));
 		}
