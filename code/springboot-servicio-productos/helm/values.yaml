@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: jmoratilla/servicio-productos
-  tag: 0.1.0-SNAPSHOT
+  tag: 0.0.1-SNAPSHOT
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
