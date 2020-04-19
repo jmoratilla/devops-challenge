@@ -12,7 +12,7 @@ This repo contains all the work and docs for the code test.
 First, download the repository using git:
 
 ```shell
-$ git clone https://bitbucket.org/moratilla/cl-challenge.git
+$ git clone https://github.com/jmoratilla/devops-challenge.git
 ```
 
 ## About documentation
